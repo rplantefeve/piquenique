@@ -1,12 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
-<head>
-    <title>Piqui-Nique</title>
-    <link rel="stylesheet" href="css/style.css"/>
-</head>
+
 <html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Pique-Nique</title>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
     <body>
-        
+
         <?php
         require_once('config/config.inc.php');
         require_once('classe/PDO2.php');
@@ -56,18 +58,18 @@
                 <br/> 
                 Vous allez être redirigé...	
                 <?php
-                    if ($participation != null) {
-                       ?>
-                       <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=1'>
-                       <?php
-                    }
-                    if ($supprimer != null) {
-                       ?>
-                       <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=2'>
-                       <?php
-                    }
+                if ($participation != null) {
+                    ?>
+                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=1'>
+                    <?php
+                }
+                if ($supprimer != null) {
+                    ?>
+                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=2'>
+                    <?php
+                }
                 ?>
-                
+
             </p>
 
             <?php
@@ -86,10 +88,10 @@
                         Vous allez être redirigé...	
                         <!--                        <meta http-equiv='refresh' content='2;URL=index.php'>-->
                     </p>
-            <?php
-        }
-        if ($participation == 'Non') {
-            ?>
+                    <?php
+                }
+                if ($participation == 'Non') {
+                    ?>
                     <p>
                         Vous n'êtes plus inscrit(e) au pique nique.
                         <br/>
@@ -97,14 +99,14 @@
                         Vous allez être redirigé...	
                         <meta http-equiv='refresh' content='2;URL=index.php'>
                     </p>
-            <?php
-        }
-    }
-    if ($supprimer == 'Oui') {
-        $sql = "DELETE FROM `piquenique`.`participant` WHERE `participant`.`mail` = '$mail' AND `participant`.`password` = '$password';";
+                    <?php
+                }
+            }
+            if ($supprimer == 'Oui') {
+                $sql = "DELETE FROM `piquenique`.`participant` WHERE `participant`.`mail` = '$mail' AND `participant`.`password` = '$password';";
 
-        $req = $bdd->query($sql);
-        ?>
+                $req = $bdd->query($sql);
+                ?>
 
                 <p>
                     Vous avez êtes supprimé de la base de données et vous êtes déinscrit du Pique Nique. 
@@ -114,10 +116,10 @@
                     <meta http-equiv='refresh' content='2;URL=index.php'>
                 </p>
 
-        <?php
-    }
-    if ($supprimer == 'Non') {
-        ?>
+                <?php
+            }
+            if ($supprimer == 'Non') {
+                ?>
 
                 <p>
                     Vous n'êtes pas supprimé de la base de données. 
@@ -127,9 +129,9 @@
                     <meta http-equiv='refresh' content='2;URL=index.php'>
                 </p>
 
-        <?php
-    }
-}
-?>
+                <?php
+            }
+        }
+        ?>
     </body>
 </html>

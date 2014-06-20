@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `adresseEise2` varchar(50)  DEFAULT NULL COMMENT 'Adresse complémentaire de l''entrerprise ',
   `codePostal` int(5) DEFAULT NULL COMMENT 'Code Postal de l''entreprise',
   `ville` varchar(25)  DEFAULT NULL COMMENT 'Ville de l''entreprise'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

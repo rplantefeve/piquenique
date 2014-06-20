@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-
-<head>
-    <title>Pique-Nique</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/font.css"/>
-</head>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pique-Nique</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/font.css"/>
+    </head>
     <body>
         <div class="container">   
             <header>

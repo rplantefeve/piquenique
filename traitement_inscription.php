@@ -2,12 +2,10 @@
 require_once('config/config.inc.php');
 require_once('classe/PDO2.php');
 
-try
-{
-$bdd = PDO2::getInstance();
-} catch(Exception $e)
-{
-die('Erreur:' . $e->getMessage());
+try {
+    $bdd = PDO2::getInstance();
+} catch (Exception $e) {
+    die('Erreur:' . $e->getMessage());
 }
 
 $sexe = $_POST['sexe'];
@@ -19,7 +17,7 @@ $password = addslashes($_POST['password1']);
 $section = $_POST['section'];
 $anneeSorti = $_POST['anneeSorti'];
 $participation = null;
-$fonction =addslashes( $_POST['fonction']);
+$fonction = addslashes($_POST['fonction']);
 $nomEise = addslashes($_POST['nomEise']);
 $adresseEise1 = addslashes($_POST['adresseEise1']);
 $adresseEise2 = addslashes($_POST['adresseEise2']);
@@ -62,7 +60,6 @@ $sql = "INSERT INTO  `piquenique`.`participant`
 
 $req = $bdd->query($sql);
 //Si la participation est égale à oui.
-
 ?>
 <p>
     Merci de votre inscription.

@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-
-<head>
-    <title>Pique-Nique</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/font.css"/>
-</head>
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pique-Nique</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/font.css"/>
+    </head>
     <body>
         <div class="container">   
             <header>
@@ -17,12 +17,12 @@
                 <nav>
                     <p>
                     <ul>
-                        <li><a href="index.php">Accueil</a></li>
-                        <li><a href="news.php">News</a></li>
-                        <li><a href="formulaire_inscription.php">Inscription</a></li>
-                        <li><a href="formulaire_modif_deins.php?num=1">Participation</a></li>
-                        <li><a href="formulaire_modif_deins.php?num=2">Désinscription</a></li>
-                        <li><a href="mention_legales.php">Mentions légales</a></li>
+                        <li><a href="index.php" id="lienMenu">Accueil</a></li>
+                        <li><a href="news.php" id="lienMenu">News</a></li>
+                        <li><a href="formulaire_inscription.php" id="lienMenu">Enregistrement</a></li>
+                        <li><a href="formulaire_modif_deins.php?num=1" id="lienMenu">Participation</a></li>
+                        <li><a href="formulaire_modif_deins.php?num=2" id="lienMenu">Désinscription</a></li>
+                        <li><a href="mention_legales.php" id="lienMenu">Mentions légales</a></li>
                     </ul>
                     </p>
                 </nav>
@@ -32,7 +32,7 @@
             </header>
         </div>       
         <section id="corpsPage">
-            
+
 
         </section>
 
