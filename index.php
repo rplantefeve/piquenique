@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/font.css"/>
     </head>
     <body>
-        <div class="container">   
+        <div class="container">
             <header>
                 <div id="titre">
                     <h1>Lycée St-Michel</h1>
@@ -30,9 +30,9 @@
 
 
             </header>
-        </div>       
+        </div>
         <section id="corpsPage">
-            <img src="images/paquier1.jpg" alt="Baniere"/> 
+            <img src="images/paquier1.jpg" alt="Baniere"/>
             <h4>Rendez-vous!</h4>
             <p>
                 On vous attend en famille le 13 septembre à partir de 11 heures aux Puisots.<br/>
@@ -53,9 +53,9 @@
             </p>
             <h5>Sur ce site vous pouvez :</h5>
             <p>
-                - Vous enregistrer (lien <a href="formulaire_inscription.php" id="lienTexte">enregistrement</a>) que vous veniez au pique-nique ou pas, 
-                ça nous permettra de mettre à jour notre base de données (et vous pourrez toujours 
-                supprimer les données vous concernant par le lien « <a href="formulaire_modif_deins.php?num=2" id="lienTexte">Désinscription</a> »). Vous n’êtes pas 
+                - Vous enregistrer (lien <a href="formulaire_inscription.php" id="lienTexte">enregistrement</a>) que vous veniez au pique-nique ou pas,
+                ça nous permettra de mettre à jour notre base de données (et vous pourrez toujours
+                supprimer les données vous concernant par le lien « <a href="formulaire_modif_deins.php?num=2" id="lienTexte">Désinscription</a> »). Vous n’êtes pas
                 obligés de renseigner les informations « Entreprise ».<br/>
                 - Dire si vous <a href="formulaire_modif_deins.php?num=1">participez</a> au pique-nique ou pas.<br/>
             </p>

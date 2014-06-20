@@ -1,5 +1,9 @@
 <?php
 
+namespace Edu\Stmichel\Piquenique\classe;
+
+use PDO;
+
 /**
  * Classe implémentant le singleton pour PDO
  */
@@ -11,7 +15,7 @@ class PDO2 extends PDO
     /* Constructeur : héritage public obligatoire par héritage de PDO */
     public function __construct()
     {
-        
+
     }
 
     // End of PDO2::__construct() */

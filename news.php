@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/font.css"/>
     </head>
     <body>
-        <div class="container">   
+        <div class="container">
             <header>
                 <div id="titre">
                     <h1>Lycée St-Michel</h1>
@@ -30,7 +30,7 @@
 
 
             </header>
-        </div>       
+        </div>
         <section id="corpsPage">
 
 

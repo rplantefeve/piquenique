@@ -53,10 +53,10 @@
             ?>
 
             <p>
-                La saisie ne correspond à aucun compte.  
+                La saisie ne correspond à aucun compte.
                 <br/>
-                <br/> 
-                Vous allez être redirigé...	
+                <br/>
+                Vous allez être redirigé...
                 <?php
                 if ($participation != null) {
                     ?>
@@ -84,8 +84,8 @@
                     <p>
                         Vous êtes inscrit(e) au pique nique.
                         <br/>
-                        <br/> 
-                        Vous allez être redirigé...	
+                        <br/>
+                        Vous allez être redirigé...
                         <!--                        <meta http-equiv='refresh' content='2;URL=index.php'>-->
                     </p>
                     <?php
@@ -95,8 +95,8 @@
                     <p>
                         Vous n'êtes plus inscrit(e) au pique nique.
                         <br/>
-                        <br/> 
-                        Vous allez être redirigé...	
+                        <br/>
+                        Vous allez être redirigé...
                         <meta http-equiv='refresh' content='2;URL=index.php'>
                     </p>
                     <?php
@@ -109,10 +109,10 @@
                 ?>
 
                 <p>
-                    Vous avez êtes supprimé de la base de données et vous êtes déinscrit du Pique Nique. 
+                    Vous avez êtes supprimé de la base de données et vous êtes déinscrit du Pique Nique.
                     <br/>
-                    <br/> 
-                    Vous allez être redirigé...	
+                    <br/>
+                    Vous allez être redirigé...
                     <meta http-equiv='refresh' content='2;URL=index.php'>
                 </p>
 
@@ -122,10 +122,10 @@
                 ?>
 
                 <p>
-                    Vous n'êtes pas supprimé de la base de données. 
+                    Vous n'êtes pas supprimé de la base de données.
                     <br/>
-                    <br/> 
-                    Vous allez être redirigé...	
+                    <br/>
+                    Vous allez être redirigé...
                     <meta http-equiv='refresh' content='2;URL=index.php'>
                 </p>
 

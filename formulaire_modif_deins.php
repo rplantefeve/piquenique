@@ -10,7 +10,7 @@
         <?php
         $choix = $_GET['num'];
         ?>
-        <div class="container">   
+        <div class="container">
             <header>
 
                 <div id="titre">
@@ -30,7 +30,7 @@
                         <li><a href="mention_legales.php" id="lienMenu">Mentions légales</a></li>
                     </ul>
                     </p>
-                </nav>             
+                </nav>
             </header>
         </div>
 
@@ -88,25 +88,25 @@
 
         </section>
         <script>
-            document.getElementById('mail').onpaste = function() {
+            document.getElementById('mail').onpaste = function () {
                 alert('Merci de ne pas copier/coller');        // on prévient
                 return false;        // on empêche
             };
         </script>
         <script>
-            document.getElementById('password').onpaste = function() {
+            document.getElementById('password').onpaste = function () {
                 alert('Merci de ne pas copier/coller');        // on prévient
                 return false;        // on empêche
             };
         </script>
 
         <script>
-            (function() { // On utilise une IEF pour ne pas polluer l'espace global
+            (function () { // On utilise une IEF pour ne pas polluer l'espace global
 
                 // Fonction de désactivation de l'affichage des « tooltips »
 
-                function deactivateTooltips() {
-
+                function deactivateTooltips()
+                {
                     var spans = document.getElementsByTagName('span'),
                             spansLength = spans.length;
 
@@ -121,8 +121,8 @@
 
                 // La fonction ci-dessous permet de récupérer la « tooltip » qui correspond à notre input
 
-                function getTooltip(element) {
-
+                function getTooltip(element)
+                {
                     while (element = element.nextSibling) {
                         if (element.className === 'tooltip') {
                             return element;
@@ -138,7 +138,7 @@
 
                 var check = {}; // On met toutes nos fonctions dans un objet littéral
 
-                check['mail'] = function() {
+                check['mail'] = function () {
 
                     var mail = document.getElementById('mail'),
                             tooltipStyle = getTooltip(mail).style;
@@ -157,7 +157,7 @@
                 };
 
 
-                check['password'] = function() {
+                check['password'] = function () {
 
                     var password = document.getElementById('password'),
                             tooltipStyle = getTooltip(password).style;
@@ -176,7 +176,7 @@
 
                 // Mise en place des événements
 
-                (function() { // Utilisation d'une fonction anonyme pour éviter les variables globales.
+                (function () { // Utilisation d'une fonction anonyme pour éviter les variables globales.
 
                     var myForm = document.getElementById('myForm'),
                             inputs = document.getElementsByTagName('input'),
@@ -185,14 +185,14 @@
                     for (var i = 0; i < 2; i++) {
                         if (inputs[i].type === 'text' || inputs[i].type === 'password') {
 
-                            inputs[i].onkeyup = function() {
+                            inputs[i].onkeyup = function () {
                                 check[this.id](this.id); // « this » représente l'input actuellement modifié
                             };
 
                         }
                     }
 
-                    myForm.onsubmit = function() {
+                    myForm.onsubmit = function () {
 
                         var result = true;
 
@@ -208,7 +208,7 @@
 
                     };
 
-                    myForm.onreset = function() {
+                    myForm.onreset = function () {
 
                         for (var i = 0; i < inputsLength; i++) {
                             if (inputs[i].type === 'text' || inputs[i].type === 'password') {

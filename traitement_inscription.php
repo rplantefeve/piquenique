@@ -1,6 +1,9 @@
 <?php
-require_once('config/config.inc.php');
-require_once('classe/PDO2.php');
+
+use Edu\Stmichel\Piquenique\classe\PDO2;
+
+require_once 'config/config.inc.php';
+require_once 'classe/PDO2.php';
 
 try {
     $bdd = PDO2::getInstance();
@@ -25,38 +28,38 @@ $codePostal = $_POST['codePostalEise'];
 $ville = addslashes($_POST['villeEise']);
 
 
-$sql = "INSERT INTO  `piquenique`.`participant` 
-					(`sexe` ,
-					`nom` ,
-					`nomAuBts` ,
-					`prenom` ,
-					`mail` ,
-					`password` ,
-					`section` ,
-					`anneeSorti` ,
-					`participation` ,
-					`fonction` ,
-					`nomEise` ,
-					`adresseEise1` ,
-					`adresseEise2` ,
-					`codePostal` ,
-					`ville`)
-				VALUES 
-					('$sexe',  
-					'$nom',  
-					'$nomAuBts',  
-					'$prenom',  
-					'$mail',  
-					'$password',  
-					'$section',  
-					'$anneeSorti',  
-					'$participation',  
-					'$fonction',  
-					'$nomEise',
-					'$adresseEise1',
-					'$adresseEise2',
-					'$codePostal',
-					'$ville');";
+$sql = "INSERT INTO  `piquenique`.`participant`
+                    (`sexe` ,
+                    `nom` ,
+                    `nomAuBts` ,
+                    `prenom` ,
+                    `mail` ,
+                    `password` ,
+                    `section` ,
+                    `anneeSorti` ,
+                    `participation` ,
+                    `fonction` ,
+                    `nomEise` ,
+                    `adresseEise1` ,
+                    `adresseEise2` ,
+                    `codePostal` ,
+                    `ville`)
+                VALUES
+                    ('$sexe',
+                    '$nom',
+                    '$nomAuBts',
+                    '$prenom',
+                    '$mail',
+                    '$password',
+                    '$section',
+                    '$anneeSorti',
+                    '$participation',
+                    '$fonction',
+                    '$nomEise',
+                    '$adresseEise1',
+                    '$adresseEise2',
+                    '$codePostal',
+                    '$ville');";
 
 $req = $bdd->query($sql);
 //Si la participation est égale à oui.
@@ -64,7 +67,7 @@ $req = $bdd->query($sql);
 <p>
     Merci de votre inscription.
     Vous allez &ecirc;tre redirig&eacute; vers la page d'accueil.
-</p>	
+</p>
 
 <!--Redirection vers la page d'acueil.-->
 <meta http-equiv="refresh" content="3; URL=index.php">

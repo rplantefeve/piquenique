@@ -2,5 +2,5 @@
 
 define('DBHOST', 'localhost');
 define('DBNAME', 'piquenique');
-define('DBUSER', 'root');
-define('DBPASSWD', '');
+define('DBUSER', 'usr_piquenique');
+define('DBPASSWD', 'usr_piquenique');

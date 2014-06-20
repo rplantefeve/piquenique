@@ -8,7 +8,7 @@
     </head>
     <body>
 
-        <div class="container">   
+        <div class="container">
             <header>
 
                 <div id="titre">
@@ -28,9 +28,9 @@
                         <li><a href="mention_legales.php" id="lienMenu">Mentions légales</a></li>
                     </ul>
                     </p>
-                </nav>             
+                </nav>
             </header>
-        </div> 
+        </div>
 
         <section id="corpsPage">
 
@@ -109,7 +109,7 @@
 
                 <fieldset><legend>Entreprise</legend>
                     <label for="fonction">Fonction dans l'entreprise : </label>
-                    <input type="text" name="fonction"/><br/>			
+                    <input type="text" name="fonction"/><br/>
 
                     <label for="nomEise">Nom de l'entreprise : </label>
                     <input type="text" name="nomEise"/><br/>
@@ -138,30 +138,30 @@
         </section>
 
         <script>
-            document.getElementById('mail2').onpaste = function() {
+            document.getElementById('mail2').onpaste = function () {
                 alert('Merci de ne pas copier/coller');        // on prévient
                 return false;        // on empêche
             };
         </script>
         <script>
-            document.getElementById('password1').onpaste = function() {
+            document.getElementById('password1').onpaste = function () {
                 alert('Merci de ne pas copier/coller');        // on prévient
                 return false;        // on empêche
             };
         </script>
         <script>
-            document.getElementById('password2').onpaste = function() {
+            document.getElementById('password2').onpaste = function () {
                 alert('Merci de ne pas copier/coller');        // on prévient
                 return false;        // on empêche
             };
         </script>
         <script>
-            (function() { // On utilise une IEF pour ne pas polluer l'espace global
+            (function () { // On utilise une IEF pour ne pas polluer l'espace global
 
                 // Fonction de désactivation de l'affichage des « tooltips »
 
-                function deactivateTooltips() {
-
+                function deactivateTooltips()
+                {
                     var spans = document.getElementsByTagName('span'),
                             spansLength = spans.length;
 
@@ -176,8 +176,8 @@
 
                 // La fonction ci-dessous permet de récupérer la « tooltip » qui correspond à notre input
 
-                function getTooltip(element) {
-
+                function getTooltip(element)
+                {
                     while (element = element.nextSibling) {
                         if (element.className === 'tooltip') {
                             return element;
@@ -193,7 +193,7 @@
 
                 var check = {}; // On met toutes nos fonctions dans un objet littéral
 
-                check['sexe'] = function() {
+                check['sexe'] = function () {
 
                     var section = document.getElementById('sexe'),
                             tooltipStyle = getTooltip(sexe).style;
@@ -208,7 +208,7 @@
 
                 };
 
-                check['nom'] = function(id) {
+                check['nom'] = function (id) {
 
                     var name = document.getElementById(id),
                             tooltipStyle = getTooltip(name).style;
@@ -228,7 +228,7 @@
                 check['nomAuBts'] = check['nom']; //La fonction pour le nom au bts est la même que celle du nom
                 check['prenom'] = check['nom']; // La fonction pour le prénom est la même que celle du nom
 
-                check['mail1'] = function() {
+                check['mail1'] = function () {
 
                     var mail1 = document.getElementById('mail1'),
                             tooltipStyle = getTooltip(mail1).style;
@@ -246,7 +246,7 @@
 
                 };
 
-                check['mail2'] = function() {
+                check['mail2'] = function () {
 
                     var mail1 = document.getElementById('mail1'),
                             mail2 = document.getElementById('mail2'),
@@ -264,7 +264,7 @@
 
                 };
 
-                check['password1'] = function() {
+                check['password1'] = function () {
 
                     var password1 = document.getElementById('password1'),
                             tooltipStyle = getTooltip(password1).style;
@@ -281,7 +281,7 @@
 
                 };
 
-                check['password2'] = function() {
+                check['password2'] = function () {
 
                     var password1 = document.getElementById('password1'),
                             password2 = document.getElementById('password2'),
@@ -299,7 +299,7 @@
 
                 };
 
-                check['section'] = function() {
+                check['section'] = function () {
 
                     var section = document.getElementById('section'),
                             tooltipStyle = getTooltip(section).style;
@@ -314,7 +314,7 @@
 
                 };
 
-                check['anneeSorti'] = function() {
+                check['anneeSorti'] = function () {
 
                     var anneeSorti = document.getElementById('anneeSorti'),
                             tooltipStyle = getTooltip(anneeSorti).style,
@@ -334,7 +334,7 @@
 
                 // Mise en place des événements
 
-                (function() { // Utilisation d'une fonction anonyme pour éviter les variables globales.
+                (function () { // Utilisation d'une fonction anonyme pour éviter les variables globales.
 
                     var myForm = document.getElementById('myForm'),
                             inputs = document.getElementsByTagName('input'),
@@ -343,14 +343,14 @@
                     for (var i = 0; i < inputsLength; i++) {
                         if (inputs[i].type === 'text' || inputs[i].type === 'password') {
 
-                            inputs[i].onkeyup = function() {
+                            inputs[i].onkeyup = function () {
                                 check[this.id](this.id); // « this » représente l'input actuellement modifié
                             };
 
                         }
                     }
 
-                    myForm.onsubmit = function() {
+                    myForm.onsubmit = function () {
 
                         var result = true;
 
@@ -366,7 +366,7 @@
 
                     };
 
-                    myForm.onreset = function() {
+                    myForm.onreset = function () {
 
                         for (var i = 0; i < inputsLength; i++) {
                             if (inputs[i].type === 'text' || inputs[i].type === 'password') {
@@ -389,5 +389,3 @@
         </script>
     </body>
 </html>
-
-
