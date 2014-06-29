@@ -60,12 +60,12 @@
                 <?php
                 if ($participation != null) {
                     ?>
-                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=1'>
+                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_participation.php?num=1'>
                     <?php
                 }
                 if ($supprimer != null) {
                     ?>
-                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_deins.php?num=2'>
+                    <meta http-equiv='refresh' content='2;URL=formulaire_modif_participation.php?num=2'>
                     <?php
                 }
                 ?>
