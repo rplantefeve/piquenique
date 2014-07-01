@@ -40,11 +40,11 @@ function changerInscriptionParticipant($email, $participation)
     ));
 }
 
-function enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $participation)
+function enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, $participation)
 {
     // requête qui met à jour le champ 'participation' du participant
-    $requete = "INSERT INTO participant (nom, prenom, nomAuBts, mail, section, participation)"
-            ." VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :participation)";
+    $requete = "INSERT INTO participant (nom, prenom, nomAuBts, mail, section, anneeSorti, participation)"
+            ." VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :promotion, :participation)";
     // exécution de la requête
     DB::getInstance()->query($requete, array(
         'nom' => $nom,
@@ -52,6 +52,7 @@ function enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $s
         'nomJeuneFille' => $nomJeuneFille,
         'email' => $email,
         'section' => $section,
+        'promotion' => $promotion,
         'participation' => $participation
     ));
 }
