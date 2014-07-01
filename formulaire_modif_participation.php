@@ -5,6 +5,16 @@ require_once 'includes/participation.php';
 $nom = null;
 $prenom = null;
 $email = null;
+$nomJeuneFille = null;
+$section = null;
+$sections = array(
+    'none' => 'Sélectionnez une section',
+    'SIO' => 'SIO',
+    'IG' => 'IG',
+    'IRIS' => 'IRIS',
+    'PROJ' => 'Assistant de projet',
+    'PROF' => 'Professeur'
+);
 // Messages d'informations
 $messageInscriptionEffectuee = false;
 $messageDejaInscrit = false;
@@ -18,9 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $nom = $_POST['inputLastName'];
     $prenom = $_POST['inputFirstName'];
     $email = $_POST['inputEmail'];
+    $nomJeuneFille = $_POST['inputFamilyName'];
+    $section = $_POST['inputSection'];
 
     // On vérifie s'il existe en BDD
-    if (verifyUser($nom, $prenom, $email)) {
+    if (verifyUser($email)) {
         // Si la case pour s'inscrire est cochée
         if (isset($_POST['chkBoxInscription']) && $_POST['chkBoxInscription'] == "on") {
             // Est-il déjà inscrit ?
@@ -47,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // Si la case pour s'inscrire est cochée
         if (isset($_POST['chkBoxInscription']) && $_POST['chkBoxInscription'] == "on") {
             // enregistrer et inscrire le participant
-            enregisterInscrireParticipant($nom, $prenom, $email, 'oui');
+            enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, 'oui');
             // Message, inscription prise en compte
             $messageInscriptionEffectuee = true;
         }
         // la case n'est pas cochée
         else {
             // enregistrer et désinscrire le participant
-            enregisterInscrireParticipant($nom, $prenom, $email, 'non');
+            enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, 'non');
             // Message, désinscription prise en compte
             $messageDesinscriptionEffectuee = true;
         }
@@ -96,6 +108,18 @@ if (isset($_GET['num'])) {
                     <span class="tooltip2">Un nom ne peut pas faire moins de 2 caractères</span>
                 </div>
             </div>
+            <div id="div_buttonFamilyName" class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-info btn-group-sm" onclick="afficherNomJeuneFille();">Mariée ? Cliquez ici</button>
+                </div>
+            </div>
+            <div id="div_inputFamilyName" class="form-group">
+                <label for="inputFamilyName" class="col-sm-2 control-label">Nom de jeune fille</label>
+                <div class="col-sm-4">
+                    <input id="inputFamilyName" name="inputFamilyName" type="text" class="form-control" placeholder="Nom de jeune fille" value="<?= $nomJeuneFille ?>"/>
+                </div>
+            </div>
             <div id="div_inputEmail" class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-4">
@@ -105,11 +129,30 @@ if (isset($_GET['num'])) {
                     <span class="tooltip2">Le mail n'est pas au bon format</span>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
+            <div id="div_inputEmail" class="form-group">
+                <label for="inputSection" class="col-sm-2 control-label">Section</label>
+                <div class="col-sm-4">
+                    <select id="inputSection" name="inputSection" class="form-control">
+                        <?php
+                        foreach ($sections as $key => $value) {
+                            echo '<option ';
+                            if ($section == $key) {
+                                echo 'selected';
+                            }
+                            echo ' value="' . $key . '">' . $value . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <span class = "glyphicon glyphicon-ok form-control-feedback"></span>
+                    <span class = "glyphicon glyphicon-remove form-control-feedback"></span>
+                    <span class = "tooltip2">Veuillez sélectionner une section</span>
+                </div>
+            </div>
+            <div class = "form-group">
+                <div class = "col-sm-offset-2 col-sm-10">
+                    <div class = "checkbox">
                         <label>
-                            <input id="chkBoxInscription" name="chkBoxInscription" type="checkbox" <?php
+                            <input id = "chkBoxInscription" name = "chkBoxInscription" type = "checkbox" <?php
                             if ($_SERVER['REQUEST_METHOD'] == "GET" || isset($_POST['chkBoxInscription'])) {
                                 echo 'checked="checked"';
                             }
@@ -168,6 +211,13 @@ if (isset($_GET['num'])) {
         {
             button.innerHTML = "Se désinscrire";
         }
+    }
+
+    // Afficher le champ 'Nom de jeune fille'
+    function afficherNomJeuneFille()
+    {
+        document.getElementById('div_buttonFamilyName').style.display = 'none';
+        document.getElementById('div_inputFamilyName').style.display = 'block';
     }
 </script>
 <script src="js/verifs_formulaires.js"></script>

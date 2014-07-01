@@ -9,7 +9,7 @@ include_once 'includes/top.php';
     <img src="images/puisots.jpg" alt="Banniere"/>
     <h1>Rendez-vous</h1>
     <p>Retrouvons nous le temps d'un repas...<br/>
-        On vous attend en famille le 13 Septembre 2014 à partir de 11 heures aux Puisots.
+        On vous attend en famille le 13 Septembre 2014 à partir de 11h30 aux Puisots.
     </p>
     <p>
         <a href="formulaire_modif_participation.php" class="btn btn-primary btn-lg" role="button">Participer &raquo;</a>

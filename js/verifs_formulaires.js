@@ -1,6 +1,7 @@
 // Fonction de désactivation de l'affichage des indications de retour de formulaire
 function deactivateTooltips()
 {
+    // Masquer les informations de retour de soumission
     var spans = document.getElementsByTagName('span'),
             spansLength = spans.length;
 
@@ -9,9 +10,11 @@ function deactivateTooltips()
             spans[i].style.display = 'none';
         }
     }
+    
+    // Masquer le champ 'Nom de jeune fille'
+    document.getElementById('div_inputFamilyName').style.display = 'none';
 
 }
-
 
 // La fonction ci-dessous permet de récupérer la « tooltip » qui correspond à notre input
 function getTooltip(element)
