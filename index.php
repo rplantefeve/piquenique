@@ -12,7 +12,7 @@ include_once 'includes/top.php';
         On vous attend en famille le 13 Septembre 2014 à partir de 11h30 aux Puisots.
     </p>
     <p>
-        <a href="formulaire_modif_participation.php" class="btn btn-primary btn-lg" role="button">Participer &raquo;</a>
+        <a href="formulaire_enregistrer_participation.php" class="btn btn-primary btn-lg" role="button">Participer &raquo;</a>
     </p>
 </div>
 

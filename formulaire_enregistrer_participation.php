@@ -20,7 +20,6 @@ $sections = array(
 // Messages d'informations
 $messageInscriptionEffectuee = false;
 $messageDejaInscrit = false;
-$messageDesinscriptionEffectuee = false;
 
 /*
  *  Traitement de l'envoi du formulaire
@@ -34,50 +33,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $nomJeuneFille = $_POST['inputFamilyName'];
     $section = $_POST['inputSection'];
     $promotion = $_POST['inputPromotion'];
-    
+
     // On vérifie s'il existe en BDD
     if (verifyUser($email)) {
-        // Si la case pour s'inscrire est cochée
-        if (isset($_POST['chkBoxInscription']) && $_POST['chkBoxInscription'] == "on") {
-            // Est-il déjà inscrit ?
-            if (getParticipation($email)) {
-                // Message, vous êtes déjà inscrit
-                $messageDejaInscrit = true;
-            } else {
-                // Inscrire le participant (mise à jour)
-                changerInscriptionParticipant($email, "oui");
-                // Message, inscription prise en compte
-                $messageInscriptionEffectuee = true;
-            }
-        }
-        // La case n'est pas cochée
-        else {
-            // Désincription
-            changerInscriptionParticipant($email, "non");
-            // Message, désinscription effectuée
-            $messageDesinscriptionEffectuee = true;
+        // Est-il déjà inscrit ?
+        if (getParticipation($email)) {
+            // Message, vous êtes déjà inscrit
+            $messageDejaInscrit = true;
+        } else {
+            // Inscrire le participant (mise à jour)
+            changerInscriptionParticipant($email, "oui");
+            // Message, inscription prise en compte
+            $messageInscriptionEffectuee = true;
         }
     }
     // S'il n'existe pas en BDD
     else {
-        // Si la case pour s'inscrire est cochée
-        if (isset($_POST['chkBoxInscription']) && $_POST['chkBoxInscription'] == "on") {
-            // enregistrer et inscrire le participant
-            enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, 'oui');
-            // Message, inscription prise en compte
-            $messageInscriptionEffectuee = true;
-        }
-        // la case n'est pas cochée
-        else {
-            // enregistrer et désinscrire le participant
-            enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, 'non');
-            // Message, désinscription prise en compte
-            $messageDesinscriptionEffectuee = true;
-        }
+        // enregistrer et inscrire le participant
+        enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, 'oui');
+        // Message, inscription prise en compte
+        $messageInscriptionEffectuee = true;
     }
 }
 
-$title = "Pique-Nique : Inscription / Désinscription";
+$title = "Pique-Nique : Participation";
 include_once 'includes/top.php';
 
 
@@ -89,11 +68,11 @@ if (isset($_GET['num'])) {
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Inscription au pique-nique</h3>
+        <h3 class="panel-title">Participation au pique-nique</h3>
     </div>
     <div class="panel-body">
-        <p>Veuillez remplir le formulaire ci-dessous afin de vous inscrire (ou vous désinscrire) au pique-nique du 13 Septembre 2014.</p>
-        <form id="formInscription" name="formInscription" class="form-horizontal" role="form" method="POST" action="formulaire_modif_participation.php">
+        <p>Veuillez remplir le formulaire ci-dessous afin de participer au pique-nique du 13 Septembre 2014.</p>
+        <form id="formInscription" name="formInscription" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
             <div id="div_inputFirstName" class="form-group">
                 <label for="inputFirstName" class="col-sm-2 control-label">Prénom</label>
                 <div id="div_inputFirstNameFeedback" class="col-sm-4">
@@ -154,28 +133,9 @@ if (isset($_GET['num'])) {
                     <input id="inputPromotion" name="inputPromotion" type="text" class="form-control" placeholder="Année de promotion" value="<?= $promotion ?>"/>
                 </div>
             </div>
-            <div class = "form-group">
-                <div class = "col-sm-offset-2 col-sm-10">
-                    <div class = "checkbox">
-                        <label>
-                            <input id = "chkBoxInscription" name = "chkBoxInscription" type = "checkbox" <?php
-                            if ($_SERVER['REQUEST_METHOD'] == "GET" || isset($_POST['chkBoxInscription'])) {
-                                echo 'checked="checked"';
-                            }
-                            ?> onchange="changerBoutonInscription(this);"> Je participe au pique-nique
-                        </label>
-                    </div>
-                </div>
-            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button id="btnInscription" type="submit" class="btn btn-default"><?php
-                        if ($_SERVER['REQUEST_METHOD'] == "POST" && !isset($_POST['chkBoxInscription'])) {
-                            echo 'Se désinscrire';
-                        } else {
-                            echo 'S\'inscrire';
-                        }
-                        ?></button>
+                    <button id="btnInscription" type="submit" class="btn btn-default">S'inscrire</button>
                 </div>
             </div>
         </form>
@@ -190,12 +150,6 @@ if (isset($_GET['num'])) {
             ?>
             <div class="alert alert-warning" role="alert">
                 <strong>Attention !</strong> Vous êtes déjà inscrit au pique-nique.
-            </div>
-            <?php
-        } else if ($messageDesinscriptionEffectuee) {
-            ?>
-            <div class="alert alert-info" role="alert">
-                <strong>Dommage !</strong> Vous vous êtes désinscrit au pique-nique.
             </div>
             <?php
         }

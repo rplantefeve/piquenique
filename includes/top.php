@@ -41,7 +41,7 @@
                         }
                         ?>><a href="news.php">News</a></li>
                         <li<?php
-                        if (strrpos($_SERVER['REQUEST_URI'], "formulaire")) {
+                        if (strrpos($_SERVER['REQUEST_URI'], "participation")) {
                             echo ' class="active"';
                         } else {
                             echo ' class="dropdown"';
@@ -49,8 +49,21 @@
                         ?>>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Le pique-nique <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="formulaire_modif_participation.php">S'inscrire / Se désinscrire</a></li>
-                                <li><a href="formulaire_inscription.php">Créer un compte</a></li>
+                                <li><a href="formulaire_enregistrer_participation.php">Participer</a></li>
+                                <li><a href="formulaire_annuler_participation.php">Ne plus participer</a></li>
+                            </ul>
+                        </li>
+                        <li<?php
+                        if (strrpos($_SERVER['REQUEST_URI'], "inscription")) {
+                            echo ' class="active"';
+                        } else {
+                            echo ' class="dropdown"';
+                        }
+                        ?>>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Le registre des anciens <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="formulaire_inscription.php">S'inscrire</a></li>
+                                <li><a href="formulaire_desinscription.php">Se désinscrire</a></li>
                             </ul>
                         </li>
                         <li><a href="mentions_legales.php">Mentions légales</a></li>

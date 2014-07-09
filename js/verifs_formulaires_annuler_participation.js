@@ -2,12 +2,6 @@
  * Fonctions de conditionnement d'affichage
  */
 
-// Afficher le champ 'Nom de jeune fille'
-function afficherNomJeuneFille()
-{
-    document.getElementById('div_buttonFamilyName').style.display = 'none';
-    document.getElementById('div_inputFamilyName').className = 'form-group';
-}
 
 // Fonction de création des éléments de retour de soumission de formulaire
 function createFeedbackElements(parentNode, icons, feedbackText) {
@@ -94,29 +88,6 @@ function changeStyles(div, tooltip, OKIcon, KOIcon, conformity) {
  */
 var checkInscription = {};
 
-checkInscription['inputFirstName'] = function(id) {
-
-    // On récupère l'élément à vérifier, ainsi que le style du tooltip, ainsi que la div contenant cet élément
-    var name = document.getElementById(id),
-            tooltip = getTooltip(name),
-            div = document.getElementById("div_" + id),
-            feedbackIconOK = getFeedbackIcon(name, "glyphicon-ok"),
-            feedbackIconRemove = getFeedbackIcon(name, "glyphicon-remove");
-
-
-    if (name.value.length >= 2) {
-        changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, true);
-        return true;
-    } else {
-        changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, false);
-        return false;
-    }
-
-};
-
-// La fonction pour le prénom est la même que celle du nom
-checkInscription['inputLastName'] = checkInscription['inputFirstName'];
-
 checkInscription['inputEmail'] = function() {
 
     var mail = document.getElementById('inputEmail'),
@@ -128,41 +99,6 @@ checkInscription['inputEmail'] = function() {
     var regex = /^[a-zA-Z0-9._-]+@[a-z._-]{2,}\.[a-z]{2,4}$/;
 
     if (regex.test(mail.value)) {
-        changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, true);
-        return true;
-    } else {
-        changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, false);
-        return false;
-    }
-
-};
-
-checkInscription['inputSection'] = function() {
-
-    var section = document.getElementById('inputSection'),
-            tooltip = getTooltip(section),
-            div = document.getElementById("div_" + 'inputSection');
-
-    if (section.options[section.selectedIndex].value !== 'none') {
-        changeStyles(div, tooltip, null, null, true);
-        return true;
-    } else {
-        changeStyles(div, tooltip, null, null, false);
-        return false;
-    }
-
-};
-
-checkInscription['inputPromotion'] = function() {
-
-    var promotion = document.getElementById('inputPromotion'),
-            tooltip = getTooltip(promotion),
-            div = document.getElementById("div_" + 'inputPromotion'),
-            feedbackIconOK = getFeedbackIcon(promotion, "glyphicon-ok"),
-            feedbackIconRemove = getFeedbackIcon(promotion, "glyphicon-remove"),
-            anneePromotion = parseInt(promotion.value);
-
-    if (!isNaN(anneePromotion) && anneePromotion >= 1950 && anneePromotion <= 2015) {
         changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, true);
         return true;
     } else {
@@ -184,17 +120,8 @@ checkInscription['inputPromotion'] = function() {
     formInscription.onsubmit = function() {
 
         // On insère les éléments HTML dans le document
-        // Feedback prénom
-        createFeedbackElements(document.getElementById('div_inputFirstNameFeedback'), true, 'Un prénom ne peut pas faire moins de 2 caractères');
-        // nom
-        createFeedbackElements(document.getElementById('div_inputLastNameFeedback'), true, 'Un nom ne peut pas faire moins de 2 caractères');
         // email
         createFeedbackElements(document.getElementById('div_inputEmailFeedback'), true, 'Le mail n\'est pas au bon format');
-        // section
-        createFeedbackElements(document.getElementById('div_inputSectionFeedback'), false, 'Veuillez sélectionner une section');
-        // promo
-        createFeedbackElements(document.getElementById('div_inputPromotionFeedback'), true, 'L\'année de promotion doit se situer entre 1950 et 2015');
-
 
         var result = true;
 
