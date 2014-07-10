@@ -42,6 +42,7 @@ function changerInscriptionParticipant($email, $participation)
 
 function enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, $participation)
 {
+    $promotion = strtoupper($promotion);
     // requête qui met à jour le champ 'participation' du participant
     $requete = "INSERT INTO participant (nom, prenom, nomAuBts, mail, section, anneeSorti, participation)"
             ." VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :promotion, :participation)";

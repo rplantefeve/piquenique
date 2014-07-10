@@ -58,7 +58,7 @@ if (isset($_GET['num'])) {
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button id="btnInscription" type="submit" class="btn btn-default">Se désinscrire</button>
+                    <button id="btnInscription" type="submit" class="btn btn-default">Annuler participation</button>
                 </div>
             </div>
         </form>

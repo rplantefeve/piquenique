@@ -59,11 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 $title = "Pique-Nique : Participation";
 include_once 'includes/top.php';
 
-
-
-if (isset($_GET['num'])) {
-    $choix = $_GET['num'];
-}
 ?>
 
 <div class="panel panel-default">
@@ -72,7 +67,7 @@ if (isset($_GET['num'])) {
     </div>
     <div class="panel-body">
         <p>Veuillez remplir le formulaire ci-dessous afin de participer au pique-nique du 13 Septembre 2014.</p>
-        <form id="formInscription" name="formInscription" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
+        <form id="formParticipation" name="formParticipation" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
             <div id="div_inputFirstName" class="form-group">
                 <label for="inputFirstName" class="col-sm-2 control-label">Prénom</label>
                 <div id="div_inputFirstNameFeedback" class="col-sm-4">
@@ -130,12 +125,12 @@ if (isset($_GET['num'])) {
             <div id="div_inputPromotion" class="form-group">
                 <label for="inputPromotion" class="col-sm-2 control-label">Année de promotion</label>
                 <div id="div_inputPromotionFeedback" class="col-sm-4">
-                    <input id="inputPromotion" name="inputPromotion" type="text" class="form-control" placeholder="Année de promotion" value="<?= $promotion ?>"/>
+                    <input id="inputPromotion" name="inputPromotion" type="text" class="form-control" placeholder="Année de promotion : N/A si non applicable" value="<?= $promotion ?>"/>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button id="btnInscription" type="submit" class="btn btn-default">S'inscrire</button>
+                    <button id="btnInscription" type="submit" class="btn btn-default">Participer</button>
                 </div>
             </div>
         </form>
