@@ -3,7 +3,8 @@
 use Edu\Stmichel\Piquenique\Includes\DB;
 
 require_once 'includes/DB.php';
-function verifyUser($email)
+
+function verifierExistenceParticipant($email)
 {
     // création de la requête à la BDD
     $requete = "SELECT 1 FROM participant WHERE mail = :email";
@@ -29,7 +30,7 @@ function getParticipation($email)
     }
 }
 
-function changerInscriptionParticipant($email, $participation)
+function changerParticipation($email, $participation)
 {
     // requête qui met à jour le champ 'participation' du participant
     $requete = "UPDATE participant SET participation = :participation WHERE mail = :email";
@@ -40,12 +41,12 @@ function changerInscriptionParticipant($email, $participation)
     ));
 }
 
-function enregisterInscrireParticipant($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, $participation)
+function enregisterParticipation($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, $participation)
 {
     $promotion = strtoupper($promotion);
     // requête qui met à jour le champ 'participation' du participant
     $requete = "INSERT INTO participant (nom, prenom, nomAuBts, mail, section, anneeSorti, participation)"
-            ." VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :promotion, :participation)";
+            . " VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :promotion, :participation)";
     // exécution de la requête
     DB::getInstance()->query($requete, array(
         'nom' => $nom,

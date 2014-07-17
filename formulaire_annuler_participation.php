@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/participation.php';
+require_once 'includes/utilisateur.php';
 
 // Initialisation des variables
 $formSubmitted = false;
@@ -15,14 +16,14 @@ $messageNonExistence = false;
  *  Traitement de l'envoi du formulaire
  */
 // Si le formulaire a été envoyé 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "unparticipateForm") {
     $formSubmitted = true;
     $email = $_POST['inputEmail'];
 
     // On vérifie s'il existe en BDD
-    if (verifyUser($email)) {
+    if (verifierExistenceParticipant($email)) {
         // Désincription
-        changerInscriptionParticipant($email, "non");
+        changerParticipation($email, "non");
         // Message, désinscription effectuée
         $messageDesinscriptionEffectuee = true;
     }
@@ -31,15 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // Message, l'adresse email n'existe pas
         $messageNonExistence = true;
     }
+} else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "unparticipateFormAuthenticated") {
+    // Inscrire le participant (mise à jour)
+    changerParticipation($_POST['userEmail'], "non");
+    // Message, désinscription prise en compte
+    $messageDesinscriptionEffectuee = true;
 }
 
 $title = "Pique-Nique : Annuler sa participation";
 include_once 'includes/top.php';
 
-
-
-if (isset($_GET['num'])) {
-    $choix = $_GET['num'];
+// si l'utilisateur est loggué
+if ($isAUserIsLogged) {
+    $utilisateur = getCompleteInformationsByEmailAddress($_SESSION['user']);
 }
 ?>
 
@@ -48,21 +53,50 @@ if (isset($_GET['num'])) {
         <h3 class="panel-title">Ne plus participer au pique-nique</h3>
     </div>
     <div class="panel-body">
-        <p>Veuillez remplir le formulaire ci-dessous afin d'annuler votre participation au pique-nique du 13 Septembre 2014.</p>
-        <form id="formInscription" name="formInscription" class="form-horizontal" role="form" method="POST" action="formulaire_annuler_participation.php">
-            <div id="div_inputEmail" class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                <div id="div_inputEmailFeedback" class="col-sm-4">
-                    <input id="inputEmail" name="inputEmail" type="email" class="form-control" placeholder="pseudonyme@domaine.fr" value="<?= $email ?>"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button id="btnInscription" type="submit" class="btn btn-default">Annuler participation</button>
-                </div>
-            </div>
-        </form>
         <?php
+        // Si personne de connecté
+        if (!$isAUserIsLogged) {
+            ?>
+            <p>Veuillez remplir le formulaire ci-dessous afin d'annuler votre participation au pique-nique du 13 Septembre 2014.</p>
+            <form id="formInscription" name="formInscription" class="form-horizontal" role="form" method="POST" action="formulaire_annuler_participation.php">
+                <div id="div_inputEmail" class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                    <div id="div_inputEmailFeedback" class="col-sm-4">
+                        <input id="inputEmail" name="inputEmail" type="email" class="form-control" placeholder="pseudonyme@domaine.fr" value="<?= $email ?>"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="btnInscription" type="submit" class="btn btn-default">Annuler participation</button>
+                        <input name="submittedForm" type="hidden" value="unparticipateForm"/>
+                    </div>
+                </div>
+            </form>
+            <?php
+        }// fin si personne de connecté
+        else {
+            // si un utilisateur est connecté
+            echo '<p>Bonjour ' . $utilisateur['civilite'] . ' ' . $utilisateur['prenom'] . ' ' . $utilisateur['nom'] . ' , vous ';
+            // si l'utilisateur ne participe pas
+            if ($utilisateur['participation'] === "non") {
+                echo "n'êtes pas inscrit(e) au pique-nique.</p>";
+            }
+            // l'utilisateur est inscrit au pique-nique
+            else {
+                echo "êtes inscrit(e) au pique nique. Si vous souhaitez vous désinscrire, il vous suffit de presser le bouton ci-dessous :</p>";
+                ?>
+                <form id="formParticipation" name="formParticipation" class="form-horizontal" role="form" method="POST" action="formulaire_annuler_participation.php">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="btnInscription" type="submit" class="btn btn-default">Annuler participation</button>
+                            <input name="userEmail" type="hidden" value="<?= $utilisateur['mail'] ?>"/>
+                            <input name="submittedForm" type="hidden" value="unparticipateFormAuthenticated"/>
+                        </div>
+                    </div>
+                </form>
+                <?php
+            }
+        }//fin sinon un utilisateur est connecté
         if ($messageDesinscriptionEffectuee) {
             ?>
             <div class="alert alert-info" role="alert">

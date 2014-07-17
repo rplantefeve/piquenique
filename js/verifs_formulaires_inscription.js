@@ -240,7 +240,8 @@ checkInscription['inputPromotion'] = function() {
             feedbackIconRemove = getFeedbackIcon(promotion, "glyphicon-remove"),
             anneePromotion = parseInt(promotion.value);
 
-    if (!isNaN(anneePromotion) && anneePromotion >= 1950 && anneePromotion <= 2015) {
+    // Si la valeur est "non applicable" OU SINON si l'année est bien un entier compris entre 1950 et 2015
+    if (promotion.value.toUpperCase() === "N/A" || (!isNaN(anneePromotion) && anneePromotion >= 1950 && anneePromotion <= 2015)) {
         changeStyles(div, tooltip, feedbackIconOK, feedbackIconRemove, true);
         return true;
     } else {
@@ -286,7 +287,7 @@ checkInscription['inputPromotion'] = function() {
         // section
         createFeedbackElements(document.getElementById('div_inputSectionFeedback'), false, 'Veuillez sélectionner une section');
         // promo
-        createFeedbackElements(document.getElementById('div_inputPromotionFeedback'), true, 'L\'année de promotion doit se situer entre 1950 et 2015');
+        createFeedbackElements(document.getElementById('div_inputPromotionFeedback'), true, 'L\'année de promotion doit se situer entre 1950 et 2015 (N/A si non applicable)');
 
 
         var result = true;

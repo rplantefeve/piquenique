@@ -1,3 +1,15 @@
+<?php
+require_once 'includes/utilisateur.php';
+
+// on démarre la session
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+// On teste si un utilisateur est connecté
+$areCredentialsOK = true;
+$isAUserIsLogged = isAUserIsLogged($areCredentialsOK);
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -66,8 +78,52 @@
                                 <li><a href="formulaire_desinscription.php">Se désinscrire</a></li>
                             </ul>
                         </li>
-                        <li><a href="mentions_legales.php">Mentions légales</a></li>
                     </ul>
+                    <?php
+                    // Si pas d'utilisateur connecté
+                    if (!$isAUserIsLogged) {
+                        // on affiche le formulaire de connexion
+                        ?>
+                        <form class="navbar-form navbar-right" role="form" method="POST">
+                            <div class="form-group<?php
+                            if (!$areCredentialsOK) {
+                                echo ' has-error';
+                            }
+                            ?>">
+                                <input name="email" type="text" placeholder="Email" class="form-control"<?php
+                                if (!$areCredentialsOK) {
+                                    echo' value="' . $_POST['email'] . '"';
+                                }
+                                ?>>
+                            </div>
+                            <div class="form-group<?php
+                            if (!$areCredentialsOK) {
+                                echo ' has-error';
+                            }
+                            ?>">
+                                <input name="password" type="password" placeholder="Mot de passe" class="form-control">
+                            </div>
+                            <input name="submittedForm" type="hidden" value="connectionForm"/>
+                            <button type="submit" class="btn btn-success">Se connecter</button>
+                            <!--<button id="example" type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>-->
+                        </form>
+                        <?php
+                        if (!$areCredentialsOK) {
+                            ?>
+                            <span class="tooltip2 navbar-right">Informations de connexion incorrectes</span>
+                            <?php
+                        }
+                    }
+                    // sinon, on affiche un bouton pour se déconnecter
+                    else {
+                        ?>
+                        <form class="navbar-form navbar-right" role="form" method="POST">
+                            <input name="submittedForm" type="hidden" value="disconnectionForm"/>
+                            <button type="submit" class="btn btn-danger">Se déconnecter</button>
+                        </form>
+                        <?php
+                    }
+                    ?>
                 </div><!--/.nav-collapse -->
             </div>
         </div>

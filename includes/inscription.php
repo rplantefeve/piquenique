@@ -1,0 +1,30 @@
+<?php
+
+use Edu\Stmichel\Piquenique\Includes\DB;
+
+require_once 'includes/DB.php';
+
+function inscrireParticipant($civilite, $nom, $prenom, $email, $nomJeuneFille, $password, $section, $promotion, $firmName, $function, $address1, $address2, $zipCode, $city)
+{
+    // requête qui va enregistrer l'utilisateur (participant)
+    $requete = "INSERT INTO participant (civilite, nom, prenom, mail, nomAuBts, password, section, anneeSorti, participation, nomEise, fonction, adresseEise1, adresseEise2, codePostal, ville)"
+            . " VALUES (:civilite, :nom, :prenom, :email, :nomJeuneFille, :password, :section, :promotion, :participation, :firmName, :function, :address1, :address2, :zipCode, :city)";
+    // exécution de la requête
+    DB::getInstance()->query($requete, array(
+        'civilite' => $civilite,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'nomJeuneFille' => $nomJeuneFille,
+        'email' => $email,
+        'password' => $password,
+        'section' => $section,
+        'promotion' => $promotion,
+        'participation' => 'non',
+        'firmName' => $firmName,
+        'function' => $function,
+        'address1' => $address1,
+        'address2' => $address2,
+        'zipCode' => $zipCode,
+        'city' => $city
+    ));
+}

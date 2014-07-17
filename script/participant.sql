@@ -29,7 +29,7 @@ USE `piquenique`;
 --
 
 CREATE TABLE IF NOT EXISTS `participant` (
-  `sexe` varchar(1) DEFAULT NULL COMMENT 'Sexe de l''inscrit',
+  `civilite` varchar(4) DEFAULT NULL COMMENT 'Civilité de l''inscrit',
   `nom` varchar(25) NOT NULL COMMENT 'Nom de famille',
   `nomAuBts` varchar(25) DEFAULT NULL COMMENT 'Nom de famille au moment du bts',
   `prenom` varchar(25) NOT NULL COMMENT 'Prénom',
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `anneeSorti` varchar(4) DEFAULT NULL COMMENT 'Année de sortie du BTS',
   `participation` varchar(3) NOT NULL COMMENT 'Si l’inscrit participe ou pas',
   `fonction` varchar(50) DEFAULT NULL COMMENT 'Fonction de l''inscrit dans son entreprise',
-  `nomEise` varchar(50) DEFAULT NULL COMMENT 'Nom de l''entreprise de l''inscript',
+  `nomEise` varchar(50) DEFAULT NULL COMMENT 'Nom de l''entreprise de l''inscrit',
   `adresseEise1` varchar(50) DEFAULT NULL COMMENT 'Adresse de l''entreprise de l’inscrit',
   `adresseEise2` varchar(50) DEFAULT NULL COMMENT 'Adresse complémentaire de l''entrerprise ',
   `codePostal` varchar(5) DEFAULT NULL COMMENT 'Code Postal de l''entreprise',
