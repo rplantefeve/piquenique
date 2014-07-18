@@ -28,3 +28,64 @@ function inscrireParticipant($civilite, $nom, $prenom, $email, $nomJeuneFille, $
         'city' => $city
     ));
 }
+
+function mettreAJourInscrit($email, $firmName, $function, $address1, $address2, $zipCode, $city)
+{
+    // requête qui va enregistrer l'utilisateur (participant)
+    $requete = "UPDATE participant SET "
+            . "nomEise = :firmName, "
+            . "fonction = :function, "
+            . "adresseEise1 = :address1, "
+            . "adresseEise2 = :address2, "
+            . "codePostal = :zipCode, "
+            . "ville = :city"
+            . " WHERE mail = :email";
+    // exécution de la requête
+    DB::getInstance()->query($requete, array(
+        'email' => $email,
+        'firmName' => $firmName,
+        'function' => $function,
+        'address1' => $address1,
+        'address2' => $address2,
+        'zipCode' => $zipCode,
+        'city' => $city
+    ));
+}
+
+function mettreAJourParticipant($email, $civility, $password, $firmName, $function, $address1, $address2, $zipCode, $city)
+{
+    // requête qui va enregistrer l'utilisateur (participant)
+    $requete = "UPDATE participant SET "
+            . "civilite = :civility, "
+            . "password = :password, "
+            . "nomEise = :firmName, "
+            . "fonction = :function, "
+            . "adresseEise1 = :address1, "
+            . "adresseEise2 = :address2, "
+            . "codePostal = :zipCode, "
+            . "ville = :city"
+            . " WHERE mail = :email";
+    // exécution de la requête
+    DB::getInstance()->query($requete, array(
+        'email' => $email,
+        'civility' => $civility,
+        'password' => $password,
+        'firmName' => $firmName,
+        'function' => $function,
+        'address1' => $address1,
+        'address2' => $address2,
+        'zipCode' => $zipCode,
+        'city' => $city
+    ));
+}
+
+function desinscrireParticipant($email)
+{
+    // requête qui va supprimer l'utilisateur (participant)
+    $requete = "DELETE FROM participant"
+            . " WHERE mail = :email";
+    // exécution de la requête
+    DB::getInstance()->query($requete, array(
+        'email' => $email
+    ));
+}

@@ -4,11 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="php_crud">
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/css/old/font.css</file>
             <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/includes/inscription.php</file>
-            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/index.php</file>
-            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/formulaire_enregistrer_participation.php</file>
-            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/includes/participation.php</file>
-            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/formulaire_inscription.php</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/css/old/style2.css</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/css/style_modified.css</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/formulaire_desinscription.php</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/includes/top.php</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/css/old/style.css</file>
+            <file>file:/C:/Users/ShaFaX/git-repositories/piquenique/css/additional-styles.css</file>
         </group>
     </open-files>
 </project-private>

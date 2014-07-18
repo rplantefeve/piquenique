@@ -25,6 +25,10 @@ function verifyUserCredentials($email, $password)
 
 function isAUserIsLogged(&$areCredentialsOK = true)
 {
+    // on démarre la session
+    if (!isset($_SESSION)) {
+        session_start();
+    }
     // si l'utilisateur est déjà authentifié
     if (\array_key_exists("user", $_SESSION)) {
         // s'il y a demande de déconnexion

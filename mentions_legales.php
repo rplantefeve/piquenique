@@ -14,6 +14,7 @@ include_once 'includes/top.php';
             <li>Téléphone : 04 50 45 05 20</li>
             <li>Numéro SIRET 77653003200015</li>
         </ul>
+        <p>Contact : bbardou[AT]ac-grenoble.fr</p>
     </div>
 </div>
 <div class="panel panel-info">
@@ -48,9 +49,9 @@ include_once 'includes/top.php';
         <br/>
         Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en vous adressant à l’AAESL Saint Michel 27 Faubourg des balmettes 74000 Annecy.
         <br/>
-        Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant. 
+        Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.
         <br/>
-        Le présent fichier ne fait pas l’objet d’une déclaration à la CNIL en vertu de la <a href="http://www.legifrance.gouv.fr/jopdf/common/jo_pdf.jsp?numJO=0&dateJO=20060603&numTexte=80&pageDebut=&pageFin=">Délibération n°2006-138 du 09/05/2006</a> décidant de la dispense de déclaration des traitements constitués à des fins d'information ou de communication externe. 
+        Le présent fichier ne fait pas l’objet d’une déclaration à la CNIL en vertu de la <a href="http://www.legifrance.gouv.fr/jopdf/common/jo_pdf.jsp?numJO=0&dateJO=20060603&numTexte=80&pageDebut=&pageFin=">Délibération n°2006-138 du 09/05/2006</a> décidant de la dispense de déclaration des traitements constitués à des fins d'information ou de communication externe.
     </div>
 </div>
 <div class="panel panel-default">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Stmichel\Piquenique\Includes;
+namespace Edu\Stmichel\Piquenique\includes;
 
 use PDO;
 

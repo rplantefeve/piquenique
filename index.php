@@ -21,7 +21,7 @@ include_once 'includes/top.php';
     <div class="row">
         <div class="col-md-6">
             <img src="images/piquenique1.jpg" alt="Pique-nique"/>
-            <h2>Pourquoi faire ?</h2>   
+            <h2>Pourquoi faire ?</h2>
             <p>
                 - Manger (c’est un pique-nique, chacun apporte le sien)<br/>
                 - Se retrouver par promotion (ou pas) et constater comme on n’a pas du tout changé !<br/>

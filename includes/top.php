@@ -1,14 +1,13 @@
 <?php
 require_once 'includes/utilisateur.php';
 
-// on démarre la session
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 
 // On teste si un utilisateur est connecté
 $areCredentialsOK = true;
-$isAUserIsLogged = isAUserIsLogged($areCredentialsOK);
+if(!isset($isAUserIsLogged)){
+    $isAUserIsLogged = isAUserIsLogged($areCredentialsOK);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

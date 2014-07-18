@@ -25,7 +25,7 @@ $messageDejaInscrit = false;
 /*
  *  Traitement de l'envoi du formulaire
  */
-// Si le formulaire a été envoyé 
+// Si le formulaire a été envoyé
 if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "participateForm") {
     $formSubmitted = true;
     $nom = $_POST['inputLastName'];
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "partic
         // Message, inscription prise en compte
         $messageInscriptionEffectuee = true;
     }
-} else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "participateFormAuthenticated") {
+} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "participateFormAuthenticated") {
     // Inscrire le participant (mise à jour)
     changerParticipation($_POST['userEmail'], "oui");
     // Message, inscription prise en compte
@@ -177,10 +177,14 @@ if ($isAUserIsLogged) {
         if ($messageInscriptionEffectuee) {
             ?>
             <div class="alert alert-success" role="alert">
-                <strong>Bravo !</strong> Inscription au pique-nique effectuée.
+                <strong>Bravo !</strong> Inscription au pique-nique effectuée.<?php
+                if (!$isAUserIsLogged) {
+                    ?><br/>
+                    Pourquoi pas s'inscrire au registre des anciens dans la foulée ? <a class="alert-link" href="formulaire_inscription.php?action=MAJ&nom=<?= htmlentities($nom) ?>&nomJeuneFille=<?= htmlentities($nomJeuneFille) ?>&prenom=<?= htmlentities($prenom) ?>&email=<?= htmlentities($email) ?>&section=<?= htmlentities($section) ?>&promotion=<?= htmlentities($promotion) ?>">Par ici !</a>
+                <?php } ?>
             </div>
             <?php
-        } else if ($messageDejaInscrit) {
+        } elseif ($messageDejaInscrit) {
             ?>
             <div class="alert alert-warning" role="alert">
                 <strong>Attention !</strong> Vous êtes déjà inscrit au pique-nique.
@@ -191,5 +195,6 @@ if ($isAUserIsLogged) {
     </div>
 </div>
 
+<script src="js/verifs_formulaires_common.js"></script>
 <script src="js/verifs_formulaires_participation.js"></script>
 <?php include 'includes/bottom.php'; ?>
