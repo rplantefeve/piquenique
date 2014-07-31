@@ -5,7 +5,7 @@ require_once 'includes/utilisateur.php';
 
 // On teste si un utilisateur est connecté
 $areCredentialsOK = true;
-if(!isset($isAUserIsLogged)){
+if (!isset($isAUserIsLogged)) {
     $isAUserIsLogged = isAUserIsLogged($areCredentialsOK);
 }
 ?>
@@ -37,7 +37,8 @@ if(!isset($isAUserIsLogged)){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Lycée St-Michel</a>
+                    <!-- le hidden-txt provoque des bugs graphiques trop long à résoudre ^^ -->
+                    <a class="navbar-brand navbar-brand-logo" href="index.php"><p class="hidden-txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

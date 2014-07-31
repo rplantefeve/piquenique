@@ -6,7 +6,7 @@ include_once 'includes/top.php';
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-    <img src="images/puisots.jpg" alt="Banniere"/>
+    <img class="framed" src="images/puisots.jpg" alt="Banniere"/>
     <h1>Rendez-vous</h1>
     <p>Retrouvons nous le temps d'un repas...<br/>
         On vous attend en famille le 13 Septembre 2014 à partir de 11h30 aux Puisots.
@@ -20,7 +20,7 @@ include_once 'includes/top.php';
     <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-6">
-            <img src="images/piquenique1.jpg" alt="Pique-nique"/>
+            <img class="framed" src="images/piquenique1.jpg" alt="Pique-nique"/>
             <h2>Pourquoi faire ?</h2>
             <p>
                 - Manger (c’est un pique-nique, chacun apporte le sien)<br/>
