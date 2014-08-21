@@ -106,10 +106,10 @@ checkInscriptionBis['inputZipCode'] = checkInscription['inputZipCode'];
     if (formInscription)
     {
         document.getElementById('inputEmailConfirm').onpaste = function() {
-            return false; // on empêche
+            return false; // on empêche le copié-collé
         };
         document.getElementById('inputPasswordConfirm').onpaste = function() {
-            return false; // on empêche
+            return false; // on empêche le copié-collé
         };
 
         formInscription.onsubmit = function() {

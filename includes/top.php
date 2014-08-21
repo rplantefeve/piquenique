@@ -43,17 +43,17 @@ if (!isset($isAUserIsLogged)) {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li<?php
-                        if (strrpos($_SERVER['REQUEST_URI'], "index")) {
+                        if (strrpos(filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL), "index")) {
                             echo ' class="active"';
                         }
                         ?>><a href="index.php">Accueil</a></li>
                         <li<?php
-                        if (strrpos($_SERVER['REQUEST_URI'], "news")) {
+                        if (strrpos(filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL), "news")) {
                             echo ' class="active"';
                         }
                         ?>><a href="news.php">News</a></li>
                         <li<?php
-                        if (strrpos($_SERVER['REQUEST_URI'], "participation")) {
+                        if (strrpos(filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL), "participation")) {
                             echo ' class="active"';
                         } else {
                             echo ' class="dropdown"';
@@ -66,7 +66,7 @@ if (!isset($isAUserIsLogged)) {
                             </ul>
                         </li>
                         <li<?php
-                        if (strrpos($_SERVER['REQUEST_URI'], "inscription")) {
+                        if (strrpos(filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL), "inscription")) {
                             echo ' class="active"';
                         } else {
                             echo ' class="dropdown"';
@@ -92,7 +92,7 @@ if (!isset($isAUserIsLogged)) {
                             ?>">
                                 <input name="email" type="text" placeholder="Email" class="form-control"<?php
                                 if (!$areCredentialsOK) {
-                                    echo' value="' . $_POST['email'] . '"';
+                                    echo' value="' . filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) . '"';
                                 }
                                 ?>>
                             </div>

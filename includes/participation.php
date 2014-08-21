@@ -30,28 +30,30 @@ function getParticipation($email)
     }
 }
 
-function changerParticipation($email, $participation)
+function changerParticipation($email, $participation, $nbParticipants = '0')
 {
-    // requête qui met à jour le champ 'participation' du participant
-    $requete = "UPDATE participant SET participation = :participation WHERE mail = :email";
+    // requête qui met à jour les champs 'participation' et 'nbParticipants' du participant
+    $requete = "UPDATE participant SET participation = :participation, nbParticipants = :nbParticipants WHERE mail = :email";
     // exécution de la requête
     DB::getInstance()->query($requete, array(
         'email' => $email,
+        'nbParticipants' => $nbParticipants,
         'participation' => $participation
     ));
 }
 
-function enregisterParticipation($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, $participation)
+function enregisterParticipation($nom, $prenom, $nomJeuneFille, $nbParticipants, $email, $section, $promotion, $participation)
 {
     $promotion = strtoupper($promotion);
     // requête qui met à jour le champ 'participation' du participant
-    $requete = "INSERT INTO participant (nom, prenom, nomAuBts, mail, section, anneeSorti, participation)"
-            . " VALUES (:nom, :prenom, :nomJeuneFille, :email, :section, :promotion, :participation)";
+    $requete = "INSERT INTO participant (nom, prenom, nomAuBts, nbParticipants, mail, section, anneeSorti, participation)"
+            . " VALUES (:nom, :prenom, :nomJeuneFille, :nbParticipants, :email, :section, :promotion, :participation)";
     // exécution de la requête
     DB::getInstance()->query($requete, array(
         'nom' => $nom,
         'prenom' => $prenom,
         'nomJeuneFille' => $nomJeuneFille,
+        'nbParticipants' => $nbParticipants,
         'email' => $email,
         'section' => $section,
         'promotion' => $promotion,

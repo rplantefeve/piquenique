@@ -14,7 +14,7 @@ include_once 'includes/top.php';
             <li>Téléphone : 04 50 45 05 20</li>
             <li>Numéro SIRET 77653003200015</li>
         </ul>
-        <p>Contact : bbardou[AT]ac-grenoble.fr</p>
+        <p>Contact : piquenique.bts[AT]gmail.com</p>
     </div>
 </div>
 <div class="panel panel-info">
@@ -32,9 +32,9 @@ include_once 'includes/top.php';
     <div class="panel-body">
         <h4>Nom</h4>
         <ul>
-            <li>Dénomination sociale</li>
-            <li>Adresse</li>
-            <li>Téléphone</li>
+            <li>1&1 Internet SARL</li>
+            <li>7, place de la Gare</li>
+            <li>57201 Sarreguemines Cedex</li>
         </ul>
     </div>
 </div>
@@ -62,4 +62,4 @@ include_once 'includes/top.php';
         Ce site est l'entière propriété de L'AAESL Saint Michel qui en qualité de producteur des informations contenues dans ce site, interdit, sauf autorisation expresse, toute extraction même partielle de ces informations qui constituent une base de données au sens de l'art L341 du code de la Propriété intellectuelle.
     </div>
 </div>
-<?php include 'includes/bottom.php'; ?>
+<?php include 'includes/bottom.php'; 

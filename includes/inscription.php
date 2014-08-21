@@ -16,7 +16,7 @@ function inscrireParticipant($civilite, $nom, $prenom, $email, $nomJeuneFille, $
         'prenom' => $prenom,
         'nomJeuneFille' => $nomJeuneFille,
         'email' => $email,
-        'password' => $password,
+        'password' => md5($password),
         'section' => $section,
         'promotion' => $promotion,
         'participation' => 'non',
@@ -69,7 +69,7 @@ function mettreAJourParticipant($email, $civility, $password, $firmName, $functi
     DB::getInstance()->query($requete, array(
         'email' => $email,
         'civility' => $civility,
-        'password' => $password,
+        'password' => md5($password),
         'firmName' => $firmName,
         'function' => $function,
         'address1' => $address1,

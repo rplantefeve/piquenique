@@ -32,25 +32,27 @@ checkParticipation['inputEmail'] = function() {
     var formParticipation = document.getElementById('formParticipation');
 
     // Sur l'évènement onsubmit du formulaire (soumission), on lance les vérifications sur la saisie de l'utilisateur
-    formParticipation.onsubmit = function() {
+    if (formParticipation) {
+        formParticipation.onsubmit = function() {
 
-        // On insère les éléments HTML dans le document
-        // email
-        createFeedbackElements(document.getElementById('div_inputEmailFeedback'), true, 'Le mail n\'est pas au bon format');
+            // On insère les éléments HTML dans le document
+            // email
+            createFeedbackElements(document.getElementById('div_inputEmailFeedback'), true, 'Le mail n\'est pas au bon format');
 
-        var result = true;
+            var result = true;
 
-        for (var i in checkParticipation) {
-            result = checkParticipation[i](i) && result;
-        }
+            for (var i in checkParticipation) {
+                result = checkParticipation[i](i) && result;
+            }
 
-        if (result) {
-            return result;
-        }
+            if (result) {
+                return result;
+            }
 
-        return false;
+            return false;
 
-    };
+        };
+    }
 
 
 

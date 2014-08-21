@@ -8,6 +8,7 @@ $nom = null;
 $prenom = null;
 $email = null;
 $nomJeuneFille = null;
+$nbParticipants = null;
 $section = null;
 $promotion = null;
 $sections = array(
@@ -26,14 +27,30 @@ $messageDejaInscrit = false;
  *  Traitement de l'envoi du formulaire
  */
 // Si le formulaire a été envoyé
-if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "participateForm") {
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateForm") {
     $formSubmitted = true;
-    $nom = $_POST['inputLastName'];
-    $prenom = $_POST['inputFirstName'];
-    $email = $_POST['inputEmail'];
-    $nomJeuneFille = $_POST['inputFamilyName'];
-    $section = $_POST['inputSection'];
-    $promotion = $_POST['inputPromotion'];
+
+    $options = array(
+        'inputLastName' => FILTER_SANITIZE_STRING,
+        'inputFirstName' => FILTER_SANITIZE_STRING,
+        'inputEmail' => FILTER_SANITIZE_EMAIL,
+        'inputFamilyName' => FILTER_SANITIZE_STRING,
+        'inputParticipantsNumber' => FILTER_SANITIZE_NUMBER_INT,
+        'inputSection' => FILTER_SANITIZE_STRING,
+        'inputPromotion' => FILTER_SANITIZE_NUMBER_INT
+    );
+
+    // On filtre les valeurs rentrées par l'utilisateur
+    $resultat = filter_input_array(INPUT_POST, $options);
+
+    // On récupère les valeurs filtrées
+    $nom = $resultat['inputLastName'];
+    $prenom = $resultat['inputFirstName'];
+    $email = $resultat['inputEmail'];
+    $nomJeuneFille = $resultat['inputFamilyName'];
+    $nbParticipants = $resultat['inputParticipantsNumber'];
+    $section = $resultat['inputSection'];
+    $promotion = $resultat['inputPromotion'];
 
     // On vérifie s'il existe en BDD
     if (verifierExistenceParticipant($email)) {
@@ -43,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "partic
             $messageDejaInscrit = true;
         } else {
             // Inscrire le participant (mise à jour)
-            changerParticipation($email, "oui");
+            changerParticipation($email, "oui", $nbParticipants);
             // Message, inscription prise en compte
             $messageInscriptionEffectuee = true;
         }
@@ -51,13 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "partic
     // S'il n'existe pas en BDD
     else {
         // enregistrer et inscrire le participant
-        enregisterParticipation($nom, $prenom, $nomJeuneFille, $email, $section, $promotion, 'oui');
+        enregisterParticipation($nom, $prenom, $nomJeuneFille, $nbParticipants, $email, $section, $promotion, 'oui');
         // Message, inscription prise en compte
         $messageInscriptionEffectuee = true;
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "participateFormAuthenticated") {
+} elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateFormAuthenticated") {
+    $nbParticipants = filter_input(INPUT_POST, 'inputParticipantsNumber', FILTER_SANITIZE_NUMBER_INT);
+    $email = filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL);
     // Inscrire le participant (mise à jour)
-    changerParticipation($_POST['userEmail'], "oui");
+    changerParticipation($email, "oui", $nbParticipants);
     // Message, inscription prise en compte
     $messageInscriptionEffectuee = true;
 }
@@ -80,7 +99,7 @@ if ($isAUserIsLogged) {
         // Si personne de connecté
         if (!$isAUserIsLogged) {
             ?>
-            <p>Veuillez remplir le formulaire ci-dessous afin de participer au pique-nique du 13 Septembre 2014.</p>
+            <p>Veuillez remplir le formulaire ci-dessous afin de participer au pique-nique du 13 Septembre 2014 (Tous les champs sont obligatoires).</p>
             <form id="formParticipation" name="formParticipation" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
                 <div id="div_inputFirstName" class="form-group">
                     <label for="inputFirstName" class="col-sm-2 control-label">Prénom</label>
@@ -112,6 +131,12 @@ if ($isAUserIsLogged) {
                     <label for="inputFamilyName" class="col-sm-2 control-label">Nom de jeune fille</label>
                     <div class="col-sm-4">
                         <input id="inputFamilyName" name="inputFamilyName" type="text" class="form-control" placeholder="Nom de jeune fille" value="<?= $nomJeuneFille ?>"/>
+                    </div>
+                </div>
+                <div id="div_inputParticipantsNumber" class="form-group">
+                    <label for="inputParticipantsNumber" class="col-sm-2 control-label">Nombre de participants</label>
+                    <div id="div_inputParticipantsNumberFeedback" class="col-sm-4">
+                        <input id="inputParticipantsNumber" name="inputParticipantsNumber" type="text" class="form-control" placeholder="Nombre de participants (en incluant vous)" value="<?= $nbParticipants ?>"/>
                     </div>
                 </div>
                 <div id="div_inputEmail" class="form-group">
@@ -162,7 +187,13 @@ if ($isAUserIsLogged) {
             else {
                 echo "n'êtes pas inscrit(e) au pique nique. Si vous souhaitez vous inscrire, il vous suffit de presser le bouton ci-dessous :</p>";
                 ?>
-                <form id="formParticipation" name="formParticipation" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
+                <form id="formParticipation2" name="formParticipation2" class="form-horizontal" role="form" method="POST" action="formulaire_enregistrer_participation.php">
+                    <div id="div_inputParticipantsNumber" class="form-group">
+                        <label for="inputParticipantsNumber" class="col-sm-2 control-label">Nombre de participants</label>
+                        <div id="div_inputParticipantsNumberFeedback" class="col-sm-4">
+                            <input id="inputParticipantsNumber" name="inputParticipantsNumber" type="text" class="form-control" placeholder="Nombre de participants (en incluant vous)" value="<?= $nbParticipants ?>"/>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button id="btnInscription" type="submit" class="btn btn-default">Participer</button>

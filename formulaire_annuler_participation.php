@@ -16,9 +16,9 @@ $messageNonExistence = false;
  *  Traitement de l'envoi du formulaire
  */
 // Si le formulaire a été envoyé
-if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "unparticipateForm") {
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unparticipateForm") {
     $formSubmitted = true;
-    $email = $_POST['inputEmail'];
+    $email = filter_input(INPUT_POST, 'inputEmail', FILTER_SANITIZE_EMAIL);
 
     // On vérifie s'il existe en BDD
     if (verifierExistenceParticipant($email)) {
@@ -32,9 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "unpart
         // Message, l'adresse email n'existe pas
         $messageNonExistence = true;
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "unparticipateFormAuthenticated") {
+} elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unparticipateFormAuthenticated") {
+    $email = filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL);
     // Inscrire le participant (mise à jour)
-    changerParticipation($_POST['userEmail'], "non");
+    changerParticipation($email, "non");
     // Message, désinscription prise en compte
     $messageDesinscriptionEffectuee = true;
 }

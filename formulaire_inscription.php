@@ -44,36 +44,73 @@ $messageInscriptionMAJ = false;
  *  Traitement de l'envoi du formulaire
  */
 // si le formulaire a été envoyé en GET
-if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && $_GET['action'] === "MAJ") {
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "GET" && filter_input(INPUT_GET, 'action') === "MAJ") {
     $formSubmitted = true;
-    $nom = $_GET['nom'];
-    $nomJeuneFille = $_GET['nomJeuneFille'];
-    $prenom = $_GET['prenom'];
-    $email = $_GET['email'];
+
+    $options = array(
+        'nom' => FILTER_SANITIZE_STRING,
+        'nomJeuneFille' => FILTER_SANITIZE_STRING,
+        'prenom' => FILTER_SANITIZE_STRING,
+        'email' => FILTER_SANITIZE_EMAIL,
+        'section' => FILTER_SANITIZE_STRING,
+        'promotion' => FILTER_SANITIZE_NUMBER_INT
+    );
+
+    // On filtre les valeurs rentrées par l'utilisateur
+    $resultat = filter_input_array(INPUT_GET, $options);
+
+    // On récupère les valeurs filtrées
+    $nom = $resultat['nom'];
+    $nomJeuneFille = $resultat['nomJeuneFille'];
+    $prenom = $resultat['prenom'];
+    $email = $resultat['email'];
     $emailConfirm = $email;
-    $section = $_GET['section'];
-    $promotion = $_GET['promotion'];
+    $section = $resultat['section'];
+    $promotion = $resultat['promotion'];
 
     $miseAJourDepuisParticipation = true;
 }
 // Si le formulaire a été envoyé
-else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "subscribeForm") {
+else if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeForm") {
     $formSubmitted = true;
-    $civility = $_POST['inputCivility'];
-    $nom = $_POST['inputLastName'];
-    $prenom = $_POST['inputFirstName'];
-    $email = $_POST['inputEmail'];
-    $nomJeuneFille = $_POST['inputFamilyName'];
+
+    $options = array(
+        'inputCivility' => FILTER_SANITIZE_STRING,
+        'inputLastName' => FILTER_SANITIZE_STRING,
+        'inputFirstName' => FILTER_SANITIZE_STRING,
+        'inputEmail' => FILTER_SANITIZE_EMAIL,
+        'inputFamilyName' => FILTER_SANITIZE_STRING,
+        'inputSection' => FILTER_SANITIZE_STRING,
+        'inputPromotion' => FILTER_SANITIZE_NUMBER_INT,
+        'inputFirmName' => FILTER_SANITIZE_STRING,
+        'inputFunction' => FILTER_SANITIZE_STRING,
+        'inputAddress1' => FILTER_SANITIZE_STRING,
+        'inputAddress2' => FILTER_SANITIZE_STRING,
+        'inputZipCode' => FILTER_SANITIZE_STRING,
+        'inputCity' => FILTER_SANITIZE_STRING,
+        'subscriptionAfterParticipation' => FILTER_SANITIZE_STRING
+    );
+
+    // On filtre les valeurs rentrées par l'utilisateur
+    $resultat = filter_input_array(INPUT_POST, $options);
+
+    // On récupère les valeurs filtrées
+    $civility = $resultat['inputCivility'];
+    $nom = $resultat['inputLastName'];
+    $prenom = $resultat['inputFirstName'];
+    $email = $resultat['inputEmail'];
+    $nomJeuneFille = $resultat['inputFamilyName'];
+    // Pas de filtre pour le password (car hashage md5)
     $password = $_POST['inputPassword'];
-    $section = $_POST['inputSection'];
-    $promotion = $_POST['inputPromotion'];
-    $firmName = $_POST['inputFirmName'];
-    $function = $_POST['inputFunction'];
-    $address1 = $_POST['inputAddress1'];
-    $address2 = $_POST['inputAddress2'];
-    $zipCode = $_POST['inputZipCode'];
-    $city = $_POST['inputCity'];
-    $subscriptionAfterParticipation = $_POST['subscriptionAfterParticipation'];
+    $section = $resultat['inputSection'];
+    $promotion = $resultat['inputPromotion'];
+    $firmName = $resultat['inputFirmName'];
+    $function = $resultat['inputFunction'];
+    $address1 = $resultat['inputAddress1'];
+    $address2 = $resultat['inputAddress2'];
+    $zipCode = $resultat['inputZipCode'];
+    $city = $resultat['inputCity'];
+    $subscriptionAfterParticipation = $resultat['subscriptionAfterParticipation'];
 
     // Si la demande d'inscription provient de quelqu'un qui vient d'enregistrer sa participation
     if ($subscriptionAfterParticipation) {
@@ -103,16 +140,32 @@ else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "s
         }
         $_SESSION['user'] = $email;
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && $_POST['submittedForm'] === "subscribeFormAuthenticated") {
+} elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeFormAuthenticated") {
     // il faut mettre à jour les informations concernant l'entreprise
     $formSubmitted = true;
-    $email = $_POST['userEmail'];
-    $firmName = $_POST['inputFirmName'];
-    $function = $_POST['inputFunction'];
-    $address1 = $_POST['inputAddress1'];
-    $address2 = $_POST['inputAddress2'];
-    $zipCode = $_POST['inputZipCode'];
-    $city = $_POST['inputCity'];
+
+    $options = array(
+        'userEmail' => FILTER_SANITIZE_EMAIL,
+        'inputFirmName' => FILTER_SANITIZE_STRING,
+        'inputFunction' => FILTER_SANITIZE_STRING,
+        'inputAddress1' => FILTER_SANITIZE_STRING,
+        'inputAddress2' => FILTER_SANITIZE_STRING,
+        'inputZipCode' => FILTER_SANITIZE_STRING,
+        'inputCity' => FILTER_SANITIZE_STRING
+    );
+
+    // On filtre les valeurs rentrées par l'utilisateur
+    $resultat = filter_input_array(INPUT_POST, $options);
+
+    // On récupère les valeurs filtrées
+    $email = $resultat['userEmail'];
+    $firmName = $resultat['inputFirmName'];
+    $function = $resultat['inputFunction'];
+    $address1 = $resultat['inputAddress1'];
+    $address2 = $resultat['inputAddress2'];
+    $zipCode = $resultat['inputZipCode'];
+    $city = $resultat['inputCity'];
+
     // maj inscrit
     mettreAJourInscrit($email, $firmName, $function, $address1, $address2, $zipCode, $city);
     $messageInscriptionMAJ = true;
