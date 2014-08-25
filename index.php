@@ -43,4 +43,4 @@ include_once 'includes/top.php';
 
 </div>
 
-<?php include 'includes/bottom.php'; 
+<?php include 'includes/bottom.php';

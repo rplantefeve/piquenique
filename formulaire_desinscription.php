@@ -13,7 +13,7 @@ $messageDesinscriptionEffectuee = false;
  *  Traitement de l'envoi du formulaire
  */
 // Si le formulaire a été envoyé
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unsubscribeForm") {
+if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unsubscribeForm") {
     $formSubmitted = true;
     $email = filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL);
 
@@ -30,7 +30,7 @@ $title = "Registre : Désinscription";
 include_once 'includes/top.php';
 
 // si l'utilisateur est loggué
-if ($isAUserIsLogged && !(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unsubscribeForm")) {
+if ($isAUserIsLogged && !($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "unsubscribeForm")) {
     $utilisateur = getCompleteInformationsByEmailAddress($_SESSION['user']);
 } else {
     $isAUserIsLogged = false;

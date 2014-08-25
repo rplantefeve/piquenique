@@ -10,4 +10,4 @@ include_once 'includes/top.php';
         Le pique-nique est annoncé pour le 13 Septembre 2014 !
     </div>
 </div>
-<?php include 'includes/bottom.php'; 
+<?php include 'includes/bottom.php';

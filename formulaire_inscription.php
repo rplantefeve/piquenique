@@ -44,7 +44,7 @@ $messageInscriptionMAJ = false;
  *  Traitement de l'envoi du formulaire
  */
 // si le formulaire a été envoyé en GET
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "GET" && filter_input(INPUT_GET, 'action') === "MAJ") {
+if ($_SERVER['REQUEST_METHOD'] === "GET" && filter_input(INPUT_GET, 'action') === "MAJ") {
     $formSubmitted = true;
 
     $options = array(
@@ -71,7 +71,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "GET" && filter_input(INPUT
     $miseAJourDepuisParticipation = true;
 }
 // Si le formulaire a été envoyé
-else if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeForm") {
+else if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeForm") {
     $formSubmitted = true;
 
     $options = array(
@@ -140,7 +140,7 @@ else if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input
         }
         $_SESSION['user'] = $email;
     }
-} elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeFormAuthenticated") {
+} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscribeFormAuthenticated") {
     // il faut mettre à jour les informations concernant l'entreprise
     $formSubmitted = true;
 

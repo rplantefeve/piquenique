@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `prenom` varchar(25) NOT NULL COMMENT 'Prénom',
   `mail` varchar(50) NOT NULL COMMENT 'E-Mail de l''inscrit',
   `password` char(32) DEFAULT NULL COMMENT 'Mot de passe de l''inscrit',
-  `section` varchar(20) DEFAULT NULL COMMENT 'Section effectué au BTS',
+  `section` varchar(20) DEFAULT NULL COMMENT 'Section effectuée au BTS',
   `anneeSorti` varchar(4) DEFAULT NULL COMMENT 'Année de sortie du BTS',
   `participation` varchar(3) NOT NULL COMMENT 'Si l’inscrit participe ou pas',
   `nbParticipants` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Nombre de participants',

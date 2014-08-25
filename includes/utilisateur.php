@@ -32,14 +32,14 @@ function isAUserIsLogged(&$areCredentialsOK = true)
     // si l'utilisateur est déjà authentifié
     if (array_key_exists("user", $_SESSION)) {
         // s'il y a demande de déconnexion
-        if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "disconnectionForm") {
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "disconnectionForm") {
             logout();
         }
         return true;
         // Sinon (pas d'utilisateur authentifié pour l'instant)
     } else {
         // si la méthode POST a été employée
-        if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "connectionForm") {
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "connectionForm") {
             // On vérifie l'existence de l'utilisateur
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];

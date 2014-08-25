@@ -62,4 +62,4 @@ include_once 'includes/top.php';
         Ce site est l'entière propriété de L'AAESL Saint Michel qui en qualité de producteur des informations contenues dans ce site, interdit, sauf autorisation expresse, toute extraction même partielle de ces informations qui constituent une base de données au sens de l'art L341 du code de la Propriété intellectuelle.
     </div>
 </div>
-<?php include 'includes/bottom.php'; 
+<?php include 'includes/bottom.php';

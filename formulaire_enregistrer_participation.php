@@ -27,7 +27,7 @@ $messageDejaInscrit = false;
  *  Traitement de l'envoi du formulaire
  */
 // Si le formulaire a été envoyé
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateForm") {
+if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateForm") {
     $formSubmitted = true;
 
     $options = array(
@@ -72,7 +72,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPU
         // Message, inscription prise en compte
         $messageInscriptionEffectuee = true;
     }
-} elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateFormAuthenticated") {
+} elseif ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "participateFormAuthenticated") {
     $nbParticipants = filter_input(INPUT_POST, 'inputParticipantsNumber', FILTER_SANITIZE_NUMBER_INT);
     $email = filter_input(INPUT_POST, 'userEmail', FILTER_SANITIZE_EMAIL);
     // Inscrire le participant (mise à jour)
