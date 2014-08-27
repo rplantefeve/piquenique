@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submitted
         'inputFamilyName' => FILTER_SANITIZE_STRING,
         'inputParticipantsNumber' => FILTER_SANITIZE_NUMBER_INT,
         'inputSection' => FILTER_SANITIZE_STRING,
-        'inputPromotion' => FILTER_SANITIZE_NUMBER_INT
+        'inputPromotion' => FILTER_SANITIZE_STRING
     );
 
     // On filtre les valeurs rentrées par l'utilisateur
@@ -211,19 +211,31 @@ if ($isAUserIsLogged) {
                 <strong>Bravo !</strong> Inscription au pique-nique effectuée.<?php
                 if (!$isAUserIsLogged) {
                     ?><br/>
-                    Pourquoi pas s'inscrire au registre des anciens dans la foulée ? <a class="alert-link" href="formulaire_inscription.php?action=MAJ&nom=<?= htmlentities($nom) ?>&nomJeuneFille=<?= htmlentities($nomJeuneFille) ?>&prenom=<?= htmlentities($prenom) ?>&email=<?= htmlentities($email) ?>&section=<?= htmlentities($section) ?>&promotion=<?= htmlentities($promotion) ?>">Par ici !</a>
-                <?php } ?>
+                    Pourquoi pas <button form="formParticipation3" type="submit" class="btn btn-success">S'inscrire</button> au registre des anciens dans la foulée ?
+                    <form id="formParticipation3" name="formParticipation3" class="form-inline" role="form" method="POST" action="formulaire_inscription.php">
+                        <input name="inputNom" type="hidden" value="<?= $nom ?>"/>
+                        <input name="inputNomJeuneFille" type="hidden" value="<?= $nomJeuneFille ?>"/>
+                        <input name="inputPrenom" type="hidden" value="<?= $prenom ?>"/>
+                        <input name="inputEmail" type="hidden" value="<?= $email ?>"/>
+                        <input name="inputSection" type="hidden" value="<?= $section ?>"/>
+                        <input name="inputPromotion" type="hidden" value="<?= $promotion ?>"/>
+                        <input name="submittedForm" type="hidden" value="subscriptionAfterParticipation"/>
+                    </form>
+                </div>
             </div>
-            <?php
-        } elseif ($messageDejaInscrit) {
-            ?>
-            <div class="alert alert-warning" role="alert">
-                <strong>Attention !</strong> Vous êtes déjà inscrit au pique-nique.
-            </div>
-            <?php
-        }
-        ?>
+        </form>
+    <?php } ?>
     </div>
+    <?php
+} elseif ($messageDejaInscrit) {
+    ?>
+    <div class="alert alert-warning" role="alert">
+        <strong>Attention !</strong> Vous êtes déjà inscrit au pique-nique.
+    </div>
+    <?php
+}
+?>
+</div>
 </div>
 
 <script src="js/verifs_formulaires_common.js"></script>

@@ -43,30 +43,30 @@ $messageInscriptionMAJ = false;
 /*
  *  Traitement de l'envoi du formulaire
  */
-// si le formulaire a été envoyé en GET
-if ($_SERVER['REQUEST_METHOD'] === "GET" && filter_input(INPUT_GET, 'action') === "MAJ") {
+// si le formulaire a été envoyé en POST depuis la page de participation
+if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'submittedForm') === "subscriptionAfterParticipation") {
     $formSubmitted = true;
 
     $options = array(
-        'nom' => FILTER_SANITIZE_STRING,
-        'nomJeuneFille' => FILTER_SANITIZE_STRING,
-        'prenom' => FILTER_SANITIZE_STRING,
-        'email' => FILTER_SANITIZE_EMAIL,
-        'section' => FILTER_SANITIZE_STRING,
-        'promotion' => FILTER_SANITIZE_NUMBER_INT
+        'inputNom' => FILTER_SANITIZE_STRING,
+        'inputNomJeuneFille' => FILTER_SANITIZE_STRING,
+        'inputPrenom' => FILTER_SANITIZE_STRING,
+        'inputEmail' => FILTER_SANITIZE_EMAIL,
+        'inputSection' => FILTER_SANITIZE_STRING,
+        'inputPromotion' => FILTER_SANITIZE_STRING
     );
 
     // On filtre les valeurs rentrées par l'utilisateur
-    $resultat = filter_input_array(INPUT_GET, $options);
+    $resultat = filter_input_array(INPUT_POST, $options);
 
     // On récupère les valeurs filtrées
-    $nom = $resultat['nom'];
-    $nomJeuneFille = $resultat['nomJeuneFille'];
-    $prenom = $resultat['prenom'];
-    $email = $resultat['email'];
+    $nom = $resultat['inputNom'];
+    $nomJeuneFille = $resultat['inputNomJeuneFille'];
+    $prenom = $resultat['inputPrenom'];
+    $email = $resultat['inputEmail'];
     $emailConfirm = $email;
-    $section = $resultat['section'];
-    $promotion = $resultat['promotion'];
+    $section = $resultat['inputSection'];
+    $promotion = $resultat['inputPromotion'];
 
     $miseAJourDepuisParticipation = true;
 }
@@ -81,7 +81,7 @@ else if ($_SERVER['REQUEST_METHOD'] === "POST" && filter_input(INPUT_POST, 'subm
         'inputEmail' => FILTER_SANITIZE_EMAIL,
         'inputFamilyName' => FILTER_SANITIZE_STRING,
         'inputSection' => FILTER_SANITIZE_STRING,
-        'inputPromotion' => FILTER_SANITIZE_NUMBER_INT,
+        'inputPromotion' => FILTER_SANITIZE_STRING,
         'inputFirmName' => FILTER_SANITIZE_STRING,
         'inputFunction' => FILTER_SANITIZE_STRING,
         'inputAddress1' => FILTER_SANITIZE_STRING,
