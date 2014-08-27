@@ -1,8 +1,13 @@
             <hr>
 
             <footer>
-                <p>Le Bureau des Etudiants du Lycée Saint Michel</p>
-            </footer>   
+                <div class="pull-left">
+                    Le Bureau des Etudiants du Lycée Saint Michel
+                </div>
+                <div class="pull-right">
+                    <a href="mentions_legales.php">Mentions légales</a>
+                </div>
+            </footer>
         <!-- Fin du div 'container theme-showcase' -->
         </div>
         <!-- Bootstrap core JavaScript
@@ -15,4 +20,3 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
-
